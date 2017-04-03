@@ -1,0 +1,19 @@
+{
+  "name": "jobscarpper",
+  "version": "1.0.0",
+  "description": "jon scrapper for glassdoor.com",
+  "main": "se.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/way0750/glassdoorJobScrapper.git"
+  },
+  "author": "Way Huang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/way0750/glassdoorJobScrapper/issues"
+  },
+  "homepage": "https://github.com/way0750/glassdoorJobScrapper#readme"
+}
