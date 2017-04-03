@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/way0750/glassdoorJobScrapper/issues"
   },
-  "homepage": "https://github.com/way0750/glassdoorJobScrapper#readme"
+  "homepage": "https://github.com/way0750/glassdoorJobScrapper#readme",
+  "devDependencies": {
+    "selenium-webdriver": "3.3.0"
+  }
 }
