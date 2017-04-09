@@ -10,19 +10,21 @@ var driver = new webdriver.Builder().forBrowser('chrome').build();
 let goToPage = function(pageNum = 1) {
   var url = `https://www.glassdoor.com/Job/san-francisco-javascript-jobs-SRCH_IL.0,13_IC1147401_KO14,24_IP${pageNum}.htm?radius=10&fromAge=1`
   driver.get(url)
-  driver.findElements(By.css('li.next')).then(() => {
+  return driver.findElements(By.css('li.next')).then(() => {
     console.log('stop window from loading')
     driver.executeScript("return window.stop()");
   });
 };
 
 let getOpenings = function(pageNum = 1) {
-  goToPage(pageNum);
-  return driver.findElements(By.css('.jl'));
+  return goToPage(pageNum).then(() => {
+    return driver.findElements(By.css('.jl'));
+  });
 };
 
 let getOpeningDetails = function(openings) {
   console.log('going to parsePage');
+  console.log(openings.length);
   openings = openings.map((opening) => {
     let company = opening.findElement(By.css('div.flexbox.empLoc div')).getText();
     let job = opening.findElement(By.css('.flexbox > div > a.jobLink')).getText();
@@ -82,13 +84,13 @@ let parsePage = function(pageNum = 1) {
     .then((newTargets) => {
       return appendFile(newTargets).then(() => {
         return getNextButton().then((nextButton) => {
-          if(nextButton) return parsePage(pageNum + 1)
+          if(nextButton) return parsePage(pageNum + 1);
         });
       });
     });
 };
 
-parsePage().then((arr) => {
+parsePage().then(() => {
   console.log('got the data, closing now...');
   driver.close();
 });
