@@ -7,8 +7,9 @@ var webdriver = require('selenium-webdriver'),
 
 var driver = new webdriver.Builder().forBrowser('chrome').build();
 
+let fromAge = process.argv[2] || 1;
 let goToPage = function(pageNum = 1) {
-  var url = `https://www.glassdoor.com/Job/san-francisco-javascript-jobs-SRCH_IL.0,13_IC1147401_KO14,24_IP${pageNum}.htm?radius=10&fromAge=1`
+  var url = `https://www.glassdoor.ca/Job/san-francisco-javascript-jobs-SRCH_IL.0,13_IC1147401_KO14,24_IP${pageNum}.htm?radius=10&fromAge=${fromAge}`
   driver.get(url)
   return driver.findElements(By.css('li.next')).then(() => {
     console.log('stop window from loading')
